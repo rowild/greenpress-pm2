@@ -133,13 +133,13 @@ module.exports = {
     env: {
       PORT: config.adminPort,
       NODE_ENV: DEV,
-      BASE_URL: 'gp-admin',
+      BASE_URL: '/gp-admin',
       VUE_APP_MAIN_APP_URL: 'http://localhost:' + config.port,
     },
     env_production: {
       PORT: config.adminPort,
       NODE_ENV: PROD,
-      BASE_URL: 'gp-admin',
+      BASE_URL: '/gp-admin',
     }
   }
 }
