@@ -1,0 +1,59 @@
+version: '1.0'
+steps:
+  main_clone:
+    type: git-clone
+    description: Cloning main repository...
+    repo: greenpress/greenpress-pm2
+    revision: '${{CF_BRANCH}}'
+    stage: clone
+  build:
+    title: Building Docker Image
+    type: build
+    image_name: greenpress/greenpress-pm2
+    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+    dockerfile:
+      content: |-
+        FROM node:13.3.0
+        ENV PORT=3000
+        ENV FRONT_THEME=damal
+        EXPOSE $PORT
+        COPY . .
+        RUN npm set unsafe-perm true
+        RUN npm run sync-modules
+        RUN npm install
+        CMD npm start
+    stage: build
+  parallel_push:
+    type: parallel
+    steps:
+      annotate_build:
+        title: Annotating Build
+        image: '${{build}}'
+        working_directory: IMAGE_WORK_DIR
+        commands:
+          - echo Annotating Build...
+        on_success:
+          metadata:
+            set:
+              - '${{build.imageId}}':
+                  - CF_QUALITY: true
+        on_error:
+          metadata:
+            set:
+              - '${{build.imageId}}':
+                  - CF_QUALITY: false
+      push:
+        title: Pushing image to cfcr
+        type: push
+        image_name: greenpress/greenpress-pm2
+        registry: cfcr
+        candidate: '${{build}}'
+        tags:
+          - '${{CF_BRANCH_TAG_NORMALIZED}}'
+          - '${{CF_REVISION}}'
+    stage: push
+stages:
+  - clone
+  - build
+  - integration
+  - push
