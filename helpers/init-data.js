@@ -30,17 +30,24 @@ function runServicesInits () {
   ]).then(() => {
     console.log('init data completed successfully!')
     process.exit(0)
+  }, () => {
+    console.log('init data failed!')
+    process.exit(1)
   })
 }
 
 function runServiceInit (service, env) {
   console.log('run', service)
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     const f = fork('./' + service + '/helpers/init.js', null, { env })
 
     f.on('close', () => {
       console.log(service, 'close')
       resolve()
+    })
+    f.on('error', () => {
+      console.log(service, 'error')
+      reject()
     })
   })
 
