@@ -12,7 +12,8 @@
     "postinstall": "node ./helpers/postinstall.js",
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "pm2-runtime start pm2-dev.config.js --env development",
-    "init": "node helpers/init-data.js"
+    "init": "node helpers/init-data.js",
+    "start:init": "npm run init && npm start"
   },
   "author": "",
   "license": "ISC",
