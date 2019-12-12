@@ -1,5 +1,6 @@
 # GreenPress platform
 
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/greenpress/greenpress-pm2%2Fmaster?type=cf-1)]( https://g.codefresh.io/public/accounts/greenpress/pipelines/5df22a4025b910db783882e4)
 [![Codeship Status for greenpress/greenpress-pm2](https://app.codeship.com/projects/bc638d20-aec1-0137-27f6-0e5196de25c6/status?branch=master)](https://app.codeship.com/projects/362577)
 
 A PM2 configuration for running greenpress with just one press<br>
