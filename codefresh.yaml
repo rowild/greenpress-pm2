@@ -11,17 +11,7 @@ steps:
     type: build
     image_name: greenpress/greenpress-pm2
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
-    dockerfile:
-      content: |-
-        FROM node:13.3.0
-        ENV PORT=3000
-        ENV FRONT_THEME=damal
-        EXPOSE $PORT
-        COPY . .
-        RUN npm set unsafe-perm true
-        RUN npm run sync-modules
-        RUN npm install
-        CMD npm start
+    dockerfile: Dockerfile
     stage: build
   parallel_push:
     type: parallel

@@ -1,0 +1,9 @@
+FROM node:13.3.0
+ENV PORT=3000
+ENV FRONT_THEME=damal
+EXPOSE $PORT
+COPY . .
+RUN npm set unsafe-perm true
+RUN npm run sync-modules
+RUN npm install
+CMD npm start
