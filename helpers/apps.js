@@ -69,7 +69,7 @@ module.exports = {
   },
   content: {
     name: 'content',
-    script: './content/index.js',
+    script: 'cd content && npm start',
     ...basicHttpServiceOpts,
     env: {
       NODE_ENV: DEV,
