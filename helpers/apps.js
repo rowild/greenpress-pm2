@@ -24,6 +24,11 @@ const authServiceVariables = {
   ROLES: config.roles.all,
   DEFAULT_ROLE: config.roles.default,
   PRIVILEGED_ROLES: config.roles.privileged,
+  MAIL_PROVIDER_SERVICE: config.mailProvider.service,
+  MAIL_PROVIDER_EMAIL: config.mailProvider.email,
+  MAIL_PROVIDER_AUTH_TYPE: config.mailProvider.authType,
+  MAIL_PROVIDER_PW: config.mailProvider.password,
+  APPLICATION_URL: config.applicationUrl
 }
 
 module.exports = {
