@@ -1,6 +1,6 @@
 {
   "name": "greenpress",
-  "version": "1.0.0",
+  "version": "1.0.0-beta",
   "description": "fully blog system with SSR using node.js",
   "main": "index.js",
   "engines": {
