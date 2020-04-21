@@ -18,19 +18,18 @@ For development and production environments.
 - npm OR yarn
 - MongoDB
 
+
+## Install in Development (One time only)
+```sh
+$ npm run dev:install
+```
+After that command, the application will run for the first time, probably on port 3000.
+
 ## Install
 ```sh
-$ npm run sync-modules // first time run only
 $ npm install
 ```
 
-
-## Initiate basic information
-This command will inject basic data in database, such as posts, menus, and admin user.
-
-```sh
-$ npm run init
-```
 
 ## Launch Dev
 ```sh
@@ -45,8 +44,6 @@ $ npm start
 
 
 ## Future development
-- initial data insert to databases (admin user + main menu + demo category + demo post)
-- admin panel
 - comments
 - choose and replace themes via panel
 - dockerizing all services

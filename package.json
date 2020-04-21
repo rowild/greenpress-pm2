@@ -8,7 +8,7 @@
     "node": "11.x"
   },
   "scripts": {
-    "dev:install": "npm run sync-modules && npm run create-db-dir && npm i && npm run init",
+    "dev:install": "npm run sync-modules && npm run create-db-dir && npm i && npm run start:init",
     "create-db-dir": "node helpers/create-db-dir.js",
     "sync-modules": "node helpers/install-sub-modules.js",
     "postinstall": "node ./helpers/postinstall.js",
