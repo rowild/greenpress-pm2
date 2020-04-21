@@ -8,6 +8,8 @@
     "node": "11.x"
   },
   "scripts": {
+    "dev:install": "npm run sync-modules && npm run create-db-dir && npm i && npm run init",
+    "create-db-dir": "node helpers/create-db-dir.js",
     "sync-modules": "node helpers/install-sub-modules.js",
     "postinstall": "node ./helpers/postinstall.js",
     "start": "pm2-runtime start ecosystem.config.js --env production",
@@ -16,7 +18,7 @@
     "start:init": "(npm run init) & npm start"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "pm2": "^3.5.2"
   }
