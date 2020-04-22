@@ -41,7 +41,7 @@ steps:
         tags:
           - '${{CF_BRANCH_TAG_NORMALIZED}}'
           - '${{CF_REVISION}}'
-      stage: push
+    stage: push
 stages:
   - clone
   - build
