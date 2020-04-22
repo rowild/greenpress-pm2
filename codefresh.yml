@@ -1,0 +1,56 @@
+# More examples of Codefresh YAML can be found at
+# https://codefresh.io/docs/docs/yaml-examples/examples/
+
+version: "1.0"
+# Stages can help you organize your steps in stages
+stages:
+  - "clone"
+  - "get_git_token"
+  - "updateSubmodules"
+  - "build"
+  - "deploy"
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+    # CF_BRANCH value is auto set when pipeline is triggered
+    # Learn more at codefresh.io/docs/docs/codefresh-yaml/variables/
+    revision: "${{CF_BRANCH}}"
+    git: "github"
+    stage: "clone"
+
+  get_git_token:
+    title: Reading Github token
+    image: codefresh/cli
+    stage: "get_git_token"
+    commands:
+      - cf_export GITHUB_TOKEN=$(codefresh get context github --decrypt -o yaml | yq -y .spec.data.auth.password)
+
+  updateSubmodules:
+    image: codefresh/cfstep-gitsubmodules
+    stage: "updateSubmodules"
+    working_directory: "${{clone}}"
+    environment:
+      - CF_SUBMODULE_UPDATE_RECURSIVE=true
+
+  build:
+    title: "Building Docker image"
+    type: "build"
+    image_name: "${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}"
+    working_directory: "${{clone}}"
+    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+    dockerfile: "Dockerfile"
+    stage: "build"
+
+  deployToHeroku:
+    type: heroku-deployer
+    description: Deploy to heroku
+    title: Deploy to heroku
+    stage: deploy
+    working_directory: "${{clone}}"
+    arguments:
+      APP_NAME: ${{HEROKU_APP}}
+      EMAIL: ${{HEROKU_EMAIL}}
+      API_TOKEN: ${{HEROKU_TOKEN}}

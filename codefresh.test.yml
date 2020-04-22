@@ -11,7 +11,7 @@ steps:
     type: build
     image_name: greenpress/greenpress-pm2
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
-    dockerfile: Dockerfile
+    dockerfile: Dockerfile.test
     stage: build
   parallel_push:
     type: parallel
