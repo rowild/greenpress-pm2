@@ -31,5 +31,5 @@ module.exports = {
     privileged: 'admin',
     editors: 'editor,admin'
   },
-  frontTheme: process.env.FRONT_THEME || 'default'
+  frontTheme: process.env.FRONT_THEME || 'damal'
 }
