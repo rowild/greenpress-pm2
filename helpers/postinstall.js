@@ -1,5 +1,5 @@
 const { exec } = require('child_process')
-const apps = require('./apps')
+const apps = require('@greenpress/cli-service-pm2/apps')
 
 function execAsync (a, b) {
   return new Promise(((resolve, reject) => {
