@@ -1,7 +1,7 @@
 const IS_PROD = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  frontTheme: 'classic', // manual change of theme
+  frontTheme: process.env.FRONT_THEME || 'classic', // manual change of theme
   scripts: {
     secrets: process.env.SECRETS_SERVICE_SCRIPT || './secrets/index.js',
     auth: process.env.AUTH_SERVICE_SCRIPT || './auth/index.js',
