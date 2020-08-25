@@ -21,6 +21,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@greenpress/cli-service-pm2": "0.0.14"
+    "@greenpress/cli-service-pm2": "0.1.0"
   }
 }
