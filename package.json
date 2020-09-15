@@ -8,8 +8,8 @@
     "node": "11.x"
   },
   "scripts": {
-    "dev:install": "npm run sync-modules && npm run create-db-dir && npm i && npm run start:init:dev",
-    "create-db-dir": "node helpers/create-db-dir.js",
+    "dev:install": "npm run sync-modules && npm run create-dirs && npm i && npm run start:init:dev",
+    "create-dirs": "gp-cli-service-pm2-post-install",
     "sync-modules": "node helpers/install-sub-modules.js",
     "postinstall": "node ./helpers/postinstall.js",
     "start": "gp-cli-service-pm2-prod",
@@ -21,6 +21,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@greenpress/cli-service-pm2": "0.1.3"
+    "@greenpress/cli-service-pm2": "0.1.4"
   }
 }
